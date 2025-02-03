@@ -1,7 +1,7 @@
-package com.enviro.assessment.grad001.nkululeko.zwane.repository;
+package com.enviro.assessment.grad001.NkululekoZwane.repository;
 
 
-import com.enviro.assessment.grad001.nkululeko.zwane.model.DisposalGuidelines;
+import com.enviro.assessment.grad001.NkululekoZwane.model.DisposalGuidelines;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
