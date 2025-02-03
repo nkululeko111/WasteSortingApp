@@ -26,4 +26,33 @@ public class RecyclingTipsController {
     }
 
 
+    @GetMapping("/{id}")
+    public RecyclingTips getRecyclingTipById(@PathVariable Long id) {
+        return recyclingTipRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("RecyclingTip not found with id " + id));
+    }
+
+
+    @PostMapping
+    public RecyclingTips createRecyclingTip(@Valid @RequestBody RecyclingTips tip) {
+        return recyclingTipRepository.save(tip);
+    }
+
+
+    @PutMapping("/{id}")
+    public RecyclingTips updateRecyclingTip(@PathVariable Long id, @Valid @RequestBody RecyclingTips tipDetails) {
+        RecyclingTips tip = recyclingTipRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("RecyclingTip not found with id " + id));
+        tip.setTip(tipDetails.getTip());
+        return recyclingTipRepository.save(tip);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteRecyclingTip(@PathVariable Long id) {
+        RecyclingTips tip = recyclingTipRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("RecyclingTip not found with id " + id));
+        recyclingTipRepository.delete(tip);
+        return ResponseEntity.ok().build();
+    }
 }
